@@ -19,15 +19,36 @@ const Container = styled.div`
 `;
 
 function App() {
+  const [nome, setNome] = useState("")
+
+  function onChangeNome(event){
+    console.log(event.target.value)
+    setNome(event.target.value)
+  }
+
+  const [foto, setFoto] = useState("")
+
+  function onChangeFoto(event){
+    console.log(event.target.value)
+    setFoto(event.target.value)
+  }
+
+  const {infoUsuario, setInfoUsuario} = useState({nome:nome, foto:foto})
+
+  function onClickFazerLogin(event){
+
+  }
+
+
   const [pageFlow, setPageFlow] = useState(1);
   return (
     <>
       <GlobalStyle />
       <Container>
         <aside>
-          <Header />
+          <Header nome={nome} foto={foto}/>
           {pageFlow === 1 ? (
-            <FormularioLogin setPageFlow={setPageFlow} />
+            <FormularioLogin setPageFlow={setPageFlow} nome={nome} foto={foto} onChangeNome={onChangeNome} onChangeFoto={onChangeFoto}/>
           ) : (
             <FormularioPostagem />
           )}
